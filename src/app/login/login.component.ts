@@ -45,6 +45,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void{
     console.log('paparia')
+    
     this.bool1 = this.logData.controls.username.errors.required;
     this.bool2 = this.logData.controls.password.errors.required;
     this.fControls = this.logData.controls;
