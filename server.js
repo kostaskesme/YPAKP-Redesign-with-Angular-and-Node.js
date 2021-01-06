@@ -2,9 +2,9 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
-const User = require('./server/models/user');
-// var cookieParser = require('cookie-parser');
+// var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+// const User = require('./server/models/user');
+var cookieParser = require('cookie-parser');
 
 
 const http = require('http');
@@ -14,7 +14,7 @@ var db = mongoose.connection;
 
 app.use(function (req, res, next) {
   //Enabling CORS
-  res.header('Access-Control-Allow-Origin', 'https://localhost:4200');
+  res.header('Access-Control-Allow-Origin', 'http://localhost:4200');
   res.header('Access-Control-Allow-Methods', 'GET,HEAD,OPTIONS,POST,PUT');
   res.header('Access-Control-Allow-Credentials', true);
   res.header('Access-Control-Allow-Headers',
@@ -28,48 +28,51 @@ db.once('open', function () {
   // we're connected!
 });
 
-// app.use(cookieParser());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true })); // express body-parser
-app.use(passport.initialize());
-app.use(passport.session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: false }
-}));
+// app.use(passport.initialize());
+// app.use(passport.session({
+//   secret: 'work hard',
+//   resave: true,
+//   saveUninitialized: true,
+//   cookie: { secure: false }
+// }));
 
-passport.use(new LocalStrategy(
-  function (username, password, done) {
-    // console.log('LocalStrategy');
-    // console.log(username);
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) {
-        return done(null, false, { message: 'Incorrect username.' });
-      }
-      // TODO
-      // if (!user.validPassword(password)) {
-      //   return done(null, false, { message: 'Incorrect password.' });
-      // }
-      //console.log(user);
+// passport.use(new LocalStrategy(
+//   function (username, password, done) {
+//     // console.log('LocalStrategy');
+//     // console.log(username);
+//     User.findOne({ username: username }, function (err, user) {
+//       if (err) { return done(err); }
+//       if (!user) {
+//         return done(null, false, { message: 'Incorrect username.' });
+//       }
+//       // TODO
+//       // if (!user.validPassword(password)) {
+//       //   return done(null, false, { message: 'Incorrect password.' });
+//       // }
+//       //console.log(user);
 
-      return done(null, user);
-    });
-  }
-));
+//       return done(null, user);
+//     });
+//   }
+// ));
 
-passport.serializeUser((user, done) => {
-  // console.log('serializeUser');
-  var sessionUser = { _id: user._id, username: user.username, email: user.email }
+// passport.serializeUser((user, done) => {
+//   // console.log('serializeUser');
+//   var sessionUser = { _id: user._id, username: user.username, email: user.email }
 
-  done(null, sessionUser._id);
-})
-passport.deserializeUser(function (id, done) {
-  console.log('deserializeUser');
-  User.findById(id, function (err, user) {
-    done(err, user);
-  });
-});
+//   done(null, sessionUser._id);
+// })
+// passport.deserializeUser(function (id, done) {
+//   console.log('deserializeUser');
+//   User.findById(id, function (err, user) {
+//     done(err, user);
+//   });
+// });
 
 // serve static files from template
 app.use(express.static(__dirname + '/src'));

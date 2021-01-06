@@ -17,11 +17,15 @@ export class LoginComponent implements OnInit {
 
   cookieValueJSON = {
     id: 0,
-    username: 'unavailable',
+    firstName: 'unavailable',
+    lastName: 'unavailable'
   };
 
   logData = new FormGroup({
-    username: new FormControl('', [
+    firstName: new FormControl('', [
+      Validators.required,
+    ]),
+    lastName: new FormControl('', [
       Validators.required,
     ]),
     password: new FormControl('', [
@@ -32,21 +36,23 @@ export class LoginComponent implements OnInit {
   submitted = false;
   bool1: boolean;
   bool2: boolean;
+  bool3: boolean;
   fControls: any;
 
   updateUserCookie(user): void {
     this.cookieValueJSON = {
       id: user._id,
-      username: user.username,
+      firstName: user.firstName,
+      lastName: user.lastName
     };
     this.cookieValue = JSON.stringify(this.cookieValueJSON);
     this.cookieService.set('usersCookie', this.cookieValue);
   }
 
   ngOnInit(): void{
-    console.log('paparia');
-    this.bool1 = this.logData.controls.username.errors.required;
-    this.bool2 = this.logData.controls.password.errors.required;
+    this.bool1 = this.logData.controls.firstName.errors.required;
+    this.bool2 = this.logData.controls.lastName.errors.required;
+    this.bool3 = this.logData.controls.password.errors.required;
     this.fControls = this.logData.controls;
   }
 
@@ -56,6 +62,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authenticationService.authenticate(this.logData.value).then(result => {
+      console.log(result);
       if (result.isLoggedIn) {
         if (this.cookieService.check('usersCookie')) {
           this.cookieService.delete('usersCookie');

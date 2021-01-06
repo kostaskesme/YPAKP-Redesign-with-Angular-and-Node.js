@@ -10,3 +10,20 @@ exports.getAllUsers = function (req, res) {
         res.status(200).json({ found: true, result: user });
     });
   }
+
+  
+exports.login = function (req, res) {
+  User.findOne({firstName :req.body.firstName}, (err, user) => {
+    if (!user) {
+      res.status(200).send({ isLoggedIn: false, message: 'Could not find user' });
+      console.log(err);
+    }
+    else
+      if(req.body.password == user.password){
+        res.status(200).json({ isLoggedIn: true, user });
+      }
+      else{
+        res.status(200).send({ isLoggedIn: false, message: 'Incorrect Password' });
+      }
+  });
+}
