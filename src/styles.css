@@ -2,16 +2,21 @@
 
 body {
   font-weight: 200;
-  background-color: #337ab7;
+  color: black;
+  background-color: #f0f0f0;
 }
 
 header a,
 footer a {
-  color: white;
+  color: black;
 }
 
 footer {
   font-size: 0.8em;
+}
+
+p {
+  color: black;
 }
 
 .bg-primary,
@@ -65,3 +70,6 @@ footer {
 .dropdown-item:active {
   background-color: #a9aeb2;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
