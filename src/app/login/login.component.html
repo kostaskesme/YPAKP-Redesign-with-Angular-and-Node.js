@@ -1,0 +1,28 @@
+<body class="text-center">
+    <form [formGroup]="logData" class="form-signin" (ngSubmit)="login()">
+      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+      <br>
+      <label for="inputFirstName" class="sr-only">First Name</label>
+      <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && fControls.firstName.errors }" required autofocus>
+      <div *ngIf="submitted && fControls.firstName.errors" class="invalid-feedback">
+        <div *ngIf="bool1" style="text-align: left">Firs name is required</div>
+      </div>
+      <label for="inputLastName" class="sr-only">Last Name</label>
+      <input type="text" id="inputLastName" class="form-control" placeholder="Last Name" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && fControls.lastName.errors }" required autofocus>
+      <div *ngIf="submitted && fControls.lastName.errors" class="invalid-feedback">
+        <div *ngIf="bool1" style="text-align: left">Last name is required</div>
+      </div>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" formControlName="password" [ngClass]="{ 'is-invalid': submitted && fControls.password.errors }" required >
+      <div *ngIf="submitted && fControls.password.errors" class="invalid-feedback">
+        <div *ngIf="bool2" style="text-align: left">Password is required</div>
+      </div>
+      <br>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <br>
+      <!-- <mat-divider></mat-divider> -->
+      <br>
+      Don't have an account ? <a routerLink="/register" > Click to register</a>
+      Go to <a routerLink="/"> Home</a> page
+    </form>
+</body>

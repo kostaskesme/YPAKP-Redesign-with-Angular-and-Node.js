@@ -1,24 +1,31 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/';
-import { Page2Component } from './components/page2/page2.component';
+import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthenticationService } from './services/authentication.service';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './components/home/';
 import {MatCardModule} from '@angular/material/card';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    Page2Component
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
     MatCardModule
+    HomeComponent
   ],
-  providers: [],
+  providers: [AuthenticationService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
