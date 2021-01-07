@@ -9,6 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'login', component: LoginComponent
+
   }
 ];
 
@@ -19,4 +20,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
+
 export class AppRoutingModule { }

@@ -1,0 +1,16 @@
+
+.container {
+  background-color: red;
+  width: 40vw;
+  height: 60vw;
+}
+
+.row {
+  background-color: purple;
+}
+
+img {
+  width: 30vw;
+  height: 20vw;
+  object-fit: cover;
+}
