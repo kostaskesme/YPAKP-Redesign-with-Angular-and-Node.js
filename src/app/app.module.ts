@@ -7,23 +7,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthenticationService } from './services/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
-import { HomeComponent } from './components/home/';
-import {MatCardModule} from '@angular/material/card';
+import { HomeComponent } from './home/home.component';
+// import {MatCardModule} from '@angular/material/card';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
-    MatCardModule
-    HomeComponent
+    ReactiveFormsModule,
+    // MatCardModule,
   ],
   providers: [AuthenticationService, CookieService],
   bootstrap: [AppComponent]
