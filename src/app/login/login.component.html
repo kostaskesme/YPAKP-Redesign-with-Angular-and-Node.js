@@ -5,7 +5,7 @@
       <label for="inputFirstName" class="sr-only">First Name</label>
       <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && fControls.firstName.errors }" required autofocus>
       <div *ngIf="submitted && fControls.firstName.errors" class="invalid-feedback">
-        <div *ngIf="bool1" style="text-align: left">Firs name is required</div>
+        <div *ngIf="bool1" style="text-align: left">First name is required</div>
       </div>
       <label for="inputLastName" class="sr-only">Last Name</label>
       <input type="text" id="inputLastName" class="form-control" placeholder="Last Name" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && fControls.lastName.errors }" required autofocus>
