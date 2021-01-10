@@ -8,14 +8,16 @@ import { AuthenticationService } from './services/authentication.service';
 import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-// import {MatCardModule} from '@angular/material/card';
-
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
@@ -23,7 +25,8 @@ import { HomeComponent } from './home/home.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    // MatCardModule,
+    MatListModule,
+    MatCardModule,
   ],
   providers: [AuthenticationService, CookieService],
   bootstrap: [AppComponent]
