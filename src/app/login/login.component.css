@@ -9,15 +9,17 @@ body {
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
-
+  margin-top: -10vw;
 }
 
+.h3_header {
+  color: white;
+  margin-bottom: 6vw;
+}
 
 .form-signin {
   width: 100%;
-  max-width: 35vw;
+  max-width: 40vw;
   padding: 20px;
   margin: auto;
   border: 1px solid transparent;
@@ -45,5 +47,29 @@ body {
 }
 
 .form-signin input {
-  margin-top: 0.5rem;
+  margin-top: 2vw;
+}
+
+input[type=signin]:hover {
+  background-color: steelblue;
+}
+
+input[type=signin] {
+  background-color: dodgerblue;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin: 2vw;
+  border: none;
+  border-radius: 3rem;
+  cursor: pointer;
+}
+
+.registration {
+  margin-top: 1vw;
+  color: white;
+}
+
+a {
+  color: dimgrey;
 }

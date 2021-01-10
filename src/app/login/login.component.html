@@ -1,7 +1,6 @@
 <body class="text-center">
     <form [formGroup]="logData" class="form-signin" (ngSubmit)="login()">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <br>
+      <h3 class="h3_header">Εισάγετε τα στοιχεία σας</h3>
       <label for="inputFirstName" class="sr-only">First Name</label>
       <input type="text" id="inputFirstName" class="form-control" placeholder="First Name" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && fControls.firstName.errors }" required autofocus>
       <div *ngIf="submitted && fControls.firstName.errors" class="invalid-feedback">
@@ -17,12 +16,10 @@
       <div *ngIf="submitted && fControls.password.errors" class="invalid-feedback">
         <div *ngIf="bool2" style="text-align: left">Password is required</div>
       </div>
-      <br>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-      <br>
-      <!-- <mat-divider></mat-divider> -->
-      <br>
-      Don't have an account ? <a routerLink="/register" > Click to register</a>
-      Go to <a routerLink="/"> Home</a> page
+      <input type="signin" value="Sign In">
+       <mat-divider></mat-divider>
+      <div class="registration">
+      Don't have an account? <a routerLink="/register" > Click to register</a>
+      </div>
     </form>
 </body>
