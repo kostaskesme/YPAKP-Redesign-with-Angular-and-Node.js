@@ -1,0 +1,16 @@
+
+body {
+  text-align: center;
+  padding-top: 5vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
+}
+
+.divider {
+  padding-bottom: 3vw;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
