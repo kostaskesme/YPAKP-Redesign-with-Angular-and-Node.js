@@ -1,0 +1,134 @@
+<body>
+    <mat-tab-group >
+        <mat-tab label="Personal Information"> 
+            <mat-card class = "firstName" ><mat-card-title>First Name</mat-card-title>
+                <mat-card-content>{{userData?.firstName}}</mat-card-content>
+            </mat-card>
+            <mat-card class = "lastName"><mat-card-title>Last Name</mat-card-title>
+                <mat-card-content>{{userData?.lastName}}</mat-card-content>
+            </mat-card>
+            <mat-card class = "afm"><mat-card-title>AFM</mat-card-title>
+                <mat-card-content>{{userData?.afm}}</mat-card-content>
+            </mat-card>
+        </mat-tab>
+        <mat-tab label="Work Information"> 
+            <!-- <mat-card class = "company"><mat-card-title>Company Name</mat-card-title>
+                <mat-card-content>{{userData?.company}}</mat-card-content>
+            </mat-card> -->
+            <div *ngIf = "!isEmployer" >
+                <table mat-table [dataSource]="employerArray" class="mat-elevation-z8 full-width">
+                    <ng-container matColumnDef="company">
+                      <th mat-header-cell *matHeaderCellDef>Company</th>
+                      <td mat-cell *matCellDef="let employer"> {{employer.company}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="firstName">
+                        <th mat-header-cell *matHeaderCellDef>First Name</th>
+                        <td mat-cell *matCellDef="let employer"> {{employer.firstName}} </td>
+                      </ng-container>
+
+                    <ng-container matColumnDef="lastName">
+                      <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                      <td mat-cell *matCellDef="let employer"> {{employer.lastName}} </td>
+                    </ng-container>
+        
+                    <ng-container matColumnDef="AFM">
+                      <th mat-header-cell *matHeaderCellDef>AFM</th>
+                      <td mat-cell *matCellDef="let employer"> {{employer.afm}} </td>
+                    </ng-container>
+    
+                    <ng-container matColumnDef="action0">
+                        <th mat-header-cell *matHeaderCellDef></th>
+                        <td mat-cell *matCellDef="let employer">
+                            <button class="btn btn-primary" (click)="seeMoreUser(user)">Apply for Special Leave</button>
+                        </td>
+                    </ng-container>
+        
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                    </table>
+                <mat-card class = "situation"><mat-card-title>Work Situation</mat-card-title>
+                    <mat-card-content> 
+                        {{userData?.situation}}
+                        <mat-card class = "situationDate"><mat-card-title>Until</mat-card-title>
+                            <mat-card-content>{{(userData?.situationDate | date:'medium' || 'None')}}</mat-card-content>
+                        </mat-card>
+                    </mat-card-content>
+                </mat-card>    
+            </div>
+            <div *ngIf = "isEmployer">
+                <table mat-table [dataSource]="employeeArray" class="mat-elevation-z8 full-width">
+                <ng-container matColumnDef="firstName">
+                  <th mat-header-cell *matHeaderCellDef>First Name</th>
+                  <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="lastName">
+                  <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                  <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
+                </ng-container>
+    
+                <ng-container matColumnDef="AFM">
+                  <th mat-header-cell *matHeaderCellDef>AFM</th>
+                  <td mat-cell *matCellDef="let user"> {{user.afm}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action1">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let user">
+                        <button class="btn btn-primary" (click)="suspend(user)">Suspend</button>
+                        <div *ngIf = "user.showButtonS">
+                            <mat-form-field appearance="fill">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action2">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let user">
+                        <button class="btn btn-primary" (click)="workFromHome(user)">Work from Home</button>
+                        <div *ngIf = "user.showButtonW">
+                            <mat-form-field appearance="fill">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" [(ngModel) = "user.situationDate"]>
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </td>
+                </ng-container>
+
+                <ng-container matColumnDef="action3">
+                    <th mat-header-cell *matHeaderCellDef></th>
+                    <td mat-cell *matCellDef="let user">
+                        <button class="btn btn-primary" (click)="leave(user)">Grant Special Leave</button>
+                        <div *ngIf = "user.showButtonL">
+                            <mat-form-field appearance="fill">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </td>
+                </ng-container>
+    
+                <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns2;"></tr>
+                </table>
+                
+            </div>
+
+            <div *ngIf = "showConfirmButton">
+                <button class="btn btn-primary" (click)="confirm()">Confirm</button>
+            </div>
+
+        </mat-tab>
+      </mat-tab-group>
+</body>

@@ -65,6 +65,7 @@ export class LoginComponent implements OnInit {
         }
         console.log(result.user);
         this.updateUserCookie(result.user);
+        this.router.navigate([`profile/${this.cookieValueJSON.id}`]);
         // if (this.cookieValueJSON.type === 0) {
         //   this.router.navigate(['admin']);
         // }
