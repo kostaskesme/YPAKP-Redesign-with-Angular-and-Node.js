@@ -11,13 +11,15 @@ import { HomeComponent } from './home/home.component';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import { ContactComponent } from './contact/contact.component';
+import { CovidComponent } from './covid/covid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    CovidComponent
   ],
   imports: [
     BrowserModule,

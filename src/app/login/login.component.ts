@@ -22,11 +22,8 @@ export class LoginComponent implements OnInit {
   };
 
   logData = new FormGroup({
-    firstName: new FormControl('', [
-      Validators.required,
-    ]),
-    lastName: new FormControl('', [
-      Validators.required,
+    afm: new FormControl('', [
+      Validators.required
     ]),
     password: new FormControl('', [
       Validators.required
@@ -50,9 +47,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void{
-    this.bool1 = this.logData.controls.firstName.errors.required;
-    this.bool2 = this.logData.controls.lastName.errors.required;
-    this.bool3 = this.logData.controls.password.errors.required;
+    this.bool1 = this.logData.controls.afm.errors.required;
+    this.bool2 = this.logData.controls.password.errors.required;
     this.fControls = this.logData.controls;
   }
 
@@ -67,6 +63,7 @@ export class LoginComponent implements OnInit {
         if (this.cookieService.check('usersCookie')) {
           this.cookieService.delete('usersCookie');
         }
+        console.log(result.user);
         this.updateUserCookie(result.user);
         // if (this.cookieValueJSON.type === 0) {
         //   this.router.navigate(['admin']);

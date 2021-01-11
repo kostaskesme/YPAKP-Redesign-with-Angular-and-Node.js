@@ -5,12 +5,12 @@
   max-width: 280px;
 }
 
-.navbar-brand-title {
+.navbar-title {
   color: black;
   font-size: x-large;
 }
 
-.navbar-brand-subtitle {
+.navbar-subtitle {
   color: black;
   font-size: medium;
 }
@@ -39,10 +39,16 @@ ul li {
 /*  top: 0;*/
 /*}*/
 
+
 .nav li {
   margin: 1vw;
   padding: 1vw;
   position: relative;
+}
+
+
+.navbar-nav li .active {
+  background-color: red;
 }
 
 .search-form {

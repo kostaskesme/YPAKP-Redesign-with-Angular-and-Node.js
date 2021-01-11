@@ -14,12 +14,10 @@ body {
 
 .h3_header {
   color: white;
-  margin-bottom: 6vw;
+  margin-bottom: 50px;
 }
 
 .form-signin {
-  width: 100%;
-  max-width: 40vw;
   padding: 20px;
   margin: auto;
   border: 1px solid transparent;
@@ -27,10 +25,7 @@ body {
   box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
   background-color: deepskyblue;
   font-weight: 400;
-}
-
-.btn {
-  border-radius: 3rem;
+  width: 400px;
 }
 
 .form-signin .form-control {
@@ -50,11 +45,12 @@ body {
   margin-top: 2vw;
 }
 
-input[type=signin]:hover {
+.login-btn:hover {
   background-color: steelblue;
+  border-radius: 3rem;
 }
 
-input[type=signin] {
+.login-btn {
   background-color: dodgerblue;
   color: white;
   text-align: center;
@@ -63,6 +59,7 @@ input[type=signin] {
   border: none;
   border-radius: 3rem;
   cursor: pointer;
+  width: 150px;
 }
 
 .registration {
@@ -70,6 +67,7 @@ input[type=signin] {
   color: white;
 }
 
-a {
+
+.registration-link {
   color: dimgrey;
 }
