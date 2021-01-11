@@ -13,6 +13,10 @@ router.post('/login', function (req, res, next) {
   userController.login(req, res);
 });
 
+router.get('/users/:id', function (req, res) {
+  userController.getUsersById(req, res);
+});
+
 // router.post('/register', (request, response) => {
 //   User.register(new User(request.body), request.body.password, function (err, user) {
 //     if (err) {

@@ -27,3 +27,14 @@ exports.login = function (req, res) {
       }
   });
 }
+
+exports.getUsersById = function (req, res) {
+  User.findById(req.params.id, (err, user) => {
+    if (err) {
+      res.status(400).send({ found: false, message: `User with id:${req.params.id} not found!` });
+      console.log(err);
+    }
+    else
+      res.status(200).json({ found: true, User: user });
+  });
+}

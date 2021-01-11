@@ -9,8 +9,13 @@ import { CookieService } from 'ngx-cookie-service';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
-// import {MatCardModule} from '@angular/material/card';
-
+import { UserService } from './services/user.service';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatCardModule} from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table'  
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -25,9 +30,14 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    // MatCardModule,
+    MatTabsModule,
+    MatCardModule,
+    MatTableModule,
+    BrowserAnimationsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
-  providers: [AuthenticationService, CookieService],
+  providers: [UserService, AuthenticationService, CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
