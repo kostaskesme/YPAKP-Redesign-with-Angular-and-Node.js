@@ -1,7 +1,7 @@
 import { StringMap } from "@angular/compiler/src/compiler_facade_interface";
 
 export interface User{
-    id: string,
+    _id: string,
     firstName: string,
     lastName: string,
     afm: string,
@@ -10,22 +10,10 @@ export interface User{
     company: string,
     situation: string,
     situationDate: Date,
-    employers: [{
-        id: string,
-        company: string,
-        firstName: string,
-        lastName: string,
-        afm: string
-    }],
-    employees: [{
-        id: string,
-        firstName: string,
-        lastName: string,
-        afm: string
-        situation: string,
-        situationDate: Date,
-    }],
+    employer: string,
+    employees: [{_id: string}],
     showButtonS: boolean,
-    showButtonW: boolean
+    showButtonW: boolean,
     showButtonL: boolean,
+    applied: boolean
 }
