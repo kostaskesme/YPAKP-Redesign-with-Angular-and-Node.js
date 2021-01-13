@@ -17,6 +17,14 @@ router.get('/users/:id', function (req, res) {
   userController.getUsersById(req, res);
 });
 
+router.post('/changeSituations', function (req, res) {
+  userController.changeSituations(req, res);
+});
+
+router.post('/apply', function (req, res) {
+  userController.apply(req, res);
+});
+
 // router.post('/register', (request, response) => {
 //   User.register(new User(request.body), request.body.password, function (err, user) {
 //     if (err) {

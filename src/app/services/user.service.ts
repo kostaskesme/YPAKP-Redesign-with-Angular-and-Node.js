@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { CookieService } from 'ngx-cookie-service';
@@ -14,6 +14,22 @@ export class UserService {
     //         return Promise.resolve(response);
     //     })
     // }
+
+    public changeSituation(changesArray: any) {
+        const url = `${environment.appUrl}/changeSituations`;
+        const httpPostOptions = { headers: new HttpHeaders(), withCredentials: true };
+        return this.httpClient.post<any>(url, changesArray, httpPostOptions).toPromise().then(response => {
+          return Promise.resolve(response);
+        })
+      }
+
+    public apply(id: string) {
+      const url = `${environment.appUrl}/apply`;
+      const httpPostOptions = { headers: new HttpHeaders(), withCredentials: true };
+      return this.httpClient.post<any>(url, {id:id}, httpPostOptions).toPromise().then(response => {
+        return Promise.resolve(response);
+      })
+    }
 
     public profile(id: string) {
         const url = `${environment.appUrl}/users/${id}`;
