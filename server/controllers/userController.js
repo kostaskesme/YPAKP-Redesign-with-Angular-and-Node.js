@@ -67,8 +67,7 @@ exports.changeSituations = function(req, res){
 }
 
 exports.apply = function(req, res){
-  console.log(req.body);
-  User.findOneAndUpdate(req.body, {applied: true}, (err) =>{
+  User.findOneAndUpdate({_id: req.body.id}, {applied: true}, (err) =>{
     if(err){
       res.status(200).json({ done: false });
     }

@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../services/user.service';
 import { User } from 'src/models/user.type';
@@ -21,10 +21,9 @@ export class ProfileComponent implements OnInit {
   showConfirmButton: boolean = false;
   applied: boolean = false;
   displayedColumns: string[] = ['firstName', 'lastName', 'AFM', "situation", "situationDate", "action1", 'action2', 'action3', 'action4'];
-  constructor(private userService: UserService, private router: Router, private cookieService: CookieService) { }
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit(): void {
-    console.log(this.minDate);
     this,this.changesArray = [];
     if (!(this.cookieService.check('usersCookie'))) {
       alert('Not Authorized!');
@@ -164,6 +163,7 @@ export class ProfileComponent implements OnInit {
     this.userService.apply(this.id).then(response => {
       if (response.done) {
         alert("Success!");
+        location.reload();
       }
       else
       alert("Fail!");

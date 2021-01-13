@@ -1,26 +1,9 @@
 <body>
-    <mat-tab-group >
-        <mat-tab label="Personal Information"> 
-            <mat-card class = "firstName" ><mat-card-title>First Name</mat-card-title>
-                <mat-card-content>{{userData?.firstName}}</mat-card-content>
-            </mat-card>
-            <mat-card class = "lastName"><mat-card-title>Last Name</mat-card-title>
-                <mat-card-content>{{userData?.lastName}}</mat-card-content>
-            </mat-card>
-            <mat-card class = "afm"><mat-card-title>AFM</mat-card-title>
-                <mat-card-content>{{userData?.afm}}</mat-card-content>
-            </mat-card>
-        </mat-tab>
+    <mat-tab-group>
         <mat-tab label="Work Information"> 
             <div *ngIf = "!isEmployer" >
                 <mat-card class = "company"><mat-card-title>Company</mat-card-title>
                     <mat-card-content>{{employer?.company}}</mat-card-content>
-                </mat-card>
-                <mat-card class = "firstName"><mat-card-title>First Name</mat-card-title>
-                    <mat-card-content>{{employer?.firstName}}</mat-card-content>
-                </mat-card>
-                <mat-card class = "lastName"><mat-card-title>Last Name</mat-card-title>
-                    <mat-card-content>{{employer?.lastName}}</mat-card-content>
                 </mat-card>
                 <mat-card class = "afm"><mat-card-title>AFM</mat-card-title>
                     <mat-card-content>{{employer?.afm}}</mat-card-content>
@@ -33,10 +16,9 @@
                         </mat-card>
                     </mat-card-content>
                 </mat-card>
-                <div *ngIf = "!applied">
-
+                <div *ngIf = "!applied && userData?.parentU12">
+                    <button  class="btn btn-primary" (click)="applyForLeave()">Apply for Special Leave</button>
                 </div>
-                <button  class="btn btn-primary" (click)="applyForLeave()">Apply for Special Leave</button>
             </div>
             <div *ngIf = "isEmployer">
                 <mat-card class = "company"><mat-card-title>Company</mat-card-title>
@@ -117,13 +99,6 @@
                     <th mat-header-cell *matHeaderCellDef></th>
                     <td mat-cell *matCellDef="let user">
                         <button class="btn btn-primary" (click)="returnToNormal(user)">Return to Normal</button>
-                        <!-- <div *ngIf = "user.showButtonL">
-                            <mat-form-field appearance="fill">
-                            <mat-label>Choose a date</mat-label>
-                            <input matInput [matDatepicker]="picker" [(ngModel)]="user.situationDate" [min]="minDate" (ngModelChange) = "changeDate(user)" >                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
-                        </div> -->
                     </td>
                 </ng-container>
     
@@ -141,6 +116,17 @@
                 <button class="btn btn-primary" (click)="cancel()">Clear Changes</button>
             </div>
 
+        </mat-tab>
+        <mat-tab label="Personal Information"> 
+            <mat-card class = "firstName" ><mat-card-title>First Name</mat-card-title>
+                <mat-card-content>{{userData?.firstName}}</mat-card-content>
+            </mat-card>
+            <mat-card class = "lastName"><mat-card-title>Last Name</mat-card-title>
+                <mat-card-content>{{userData?.lastName}}</mat-card-content>
+            </mat-card>
+            <mat-card class = "afm"><mat-card-title>AFM</mat-card-title>
+                <mat-card-content>{{userData?.afm}}</mat-card-content>
+            </mat-card>
         </mat-tab>
       </mat-tab-group>
 </body>
