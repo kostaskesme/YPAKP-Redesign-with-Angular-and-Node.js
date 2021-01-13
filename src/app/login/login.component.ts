@@ -9,6 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
   constructor(private router: Router, private authenticationService: AuthenticationService, private cookieService: CookieService) {}
@@ -33,7 +34,6 @@ export class LoginComponent implements OnInit {
   submitted = false;
   bool1: boolean;
   bool2: boolean;
-  bool3: boolean;
   fControls: any;
 
   updateUserCookie(user): void {

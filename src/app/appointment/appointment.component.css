@@ -1,0 +1,43 @@
+
+body {
+  max-width: 70%;
+  margin: auto;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5vw;
+}
+
+.header, .greeting {
+  text-align: center;
+}
+
+.date-label {
+
+}
+
+.label-field {
+
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: dodgerblue;
+
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.text-area {
+  height: 100px;
+}
