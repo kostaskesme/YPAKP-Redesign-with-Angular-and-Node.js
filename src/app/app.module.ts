@@ -12,7 +12,6 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './services/user.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table'  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
