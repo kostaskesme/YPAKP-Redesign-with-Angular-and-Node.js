@@ -1,0 +1,103 @@
+
+.appointment {
+  position: absolute;
+  left: 0;
+  top: 200px;
+  width: 15%;
+  margin-left: 10px;
+  border: 2px solid;
+  box-sizing: border-box;
+  border-radius: 10px;
+  padding: 7px;
+  text-align: center;
+  background-color: white;
+}
+
+.appointment-text {
+  margin-top: 10px;
+}
+
+.appointment-button {
+  text-align: center;
+  width: 50%;
+  height: 30px;
+  margin-right: auto;
+  margin-left: auto;
+  background-color:dodgerblue;
+  border-radius: 100px;
+  padding: 5px;
+}
+
+.appointment-button-text {
+  color: white;
+}
+
+body {
+  align-items: center;
+  justify-content: center;
+  margin-top: 5vw;
+
+}
+
+.form_header {
+  text-align: center;
+}
+
+.mat-divider {
+  margin-top: 1vw;
+  margin-bottom: 2vw;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.container {
+  border-radius: 5px;
+  padding: 20px;
+  width: 50%;
+  border: 1px solid black;
+
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: dodgerblue;
+  width: 150px;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.empty-space {
+  padding-bottom: 5vw;
+}
+
+.phone-text {
+  text-align: center;
+}
+
+.phone-card {
+  width: 300px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+i {
+  text-align:center;
+  margin: auto 10px auto 40px;
+}
+
+.empty-space-bot {
+  height: 10vw;
+}

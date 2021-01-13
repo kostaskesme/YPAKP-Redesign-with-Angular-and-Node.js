@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<div class="appointment">
+  <p class="appointment-text">Για να κλείσετε <b>ραντεβού</b> πατήστε
+  τον παρακάτω σύνδεσμο:</p>
+
+  <div class="appointment-button">
+    <a href="/contact" class="appointment-button-text">Ραντεβού</a>
+  </div>
+</div>
+
+<body>
+  <div class="container">
+    <h4 class="form_header">Επικοινωνία</h4>
+
+    <mat-divider></mat-divider>
+
+    <form action="action_page">
+
+      <label for="fname">Όνομα</label>
+      <input type="text" id="fname" name="firstname" placeholder="Το όνομά σας">
+
+      <label for="lname">Επίθετο</label>
+      <input type="text" id="lname" name="lastname" placeholder="Το επίθετό σας">
+
+      <label for="afm">ΑΦΜ</label>
+      <input type="text" id="afm" name="afm" placeholder="Ο Αριθμός Φορολογικού Μητρώου σας">
+
+      <label for="afm">Ηλεκτρονική διεύθυνση (email)</label>
+      <input type="email" id="email" name="email" placeholder="me@example.com">
+
+      <label for="subject">Πώς μπορούμε να σας βοηθήσουμε;</label>
+      <textarea id="subject" name="subject" placeholder="πχ. Δεν μπορώ να δώ την κατάσταση εργασίας μου..." style="height:200px"></textarea>
+
+      <div class="submit-button">
+        <input type="submit" value="Submit">
+      </div>
+    </form>
+  </div>
+
+  <div class="empty-space"></div>
+
+  <p class="phone-text">Εναλλακτικά μπορείτε να επικοινωνήσετε μαζί μας τηλεφωνικώς καλώντας το παρακάτω νούμερο: </p>
+
+  <mat-card class="phone-card">
+    <mat-card-header><i class="fa fa-phone"></i>210 1234 567</mat-card-header>
+  </mat-card>
+
+  <div class="empty-space-bot"></div>
+
+</body>
+

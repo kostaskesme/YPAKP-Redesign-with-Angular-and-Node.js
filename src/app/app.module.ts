@@ -16,13 +16,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table'  
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
+import { ContactComponent } from './contact/contact.component';
+import { CovidComponent } from './covid/covid.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    ContactComponent,
+    CovidComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,8 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatTableModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatListModule,
   ],
   providers: [UserService, AuthenticationService, CookieService],
   bootstrap: [AppComponent]

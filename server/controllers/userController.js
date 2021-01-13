@@ -11,9 +11,9 @@ exports.getAllUsers = function (req, res) {
     });
   }
 
-  
+
 exports.login = function (req, res) {
-  User.findOne({firstName :req.body.firstName}, (err, user) => {
+  User.findOne({afm :req.body.afm}, (err, user) => {
     if (!user) {
       res.status(200).send({ isLoggedIn: false, message: 'Could not find user' });
       console.log(err);
