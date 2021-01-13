@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { UserService } from '../services/user.service';
 import { User } from 'src/models/user.type';
@@ -14,13 +14,14 @@ export class ProfileComponent implements OnInit {
   userData: User;
   id: string = window.location.href.slice((window.location.href.lastIndexOf("/")) + 1);
   isEmployer: boolean;
+  minDate: Date = new Date();
   employeeArray: User[];
-  employerArray: User[];
+  employer: User;
   changesArray: [string, Date, string][];
   showConfirmButton: boolean = false;
-  displayedColumns: string[] = ['company', 'firstName', 'lastName', 'AFM', "action0"];
-  displayedColumns2: string[] = ['firstName', 'lastName', 'AFM', "action1", 'action2', 'action3'];
-  constructor(private userService: UserService, private router: Router, private cookieService: CookieService) { }
+  applied: boolean = false;
+  displayedColumns: string[] = ['firstName', 'lastName', 'AFM', "situation", "situationDate", "action1", 'action2', 'action3', 'action4'];
+  constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit(): void {
     this,this.changesArray = [];
@@ -32,33 +33,50 @@ export class ProfileComponent implements OnInit {
       if (response.found) {
         if(response.User.type === "E"){
           this.isEmployer = true;
-          this.employeeArray = [];
-          response.User.employees.forEach(employee => {
-            employee.showButtonS = false;
-            employee.showButtonW = false;
-            employee.showButtonL = false;
-            this.employeeArray.push(employee);
-          });
+          this.employeeArray = response.array;
+          this.employeeArray.forEach(element => {
+            if(element.situation === "S"){
+              element.situation = "On Suspension";
+            }
+            else if(element.situation === "W"){
+              element.situation = "Working from Home";
+            }
+            else if(element.situation === "L"){
+              element.situation = "On Leave";
+            }
+            else{
+              element.situation = "Working Normally";
+            }
+          })
         }
         else{
           this.isEmployer = false;
-          this.employerArray = [];
-          response.User.employers.forEach(employer => {
-            employer.showButtonS = false;
-            employer.showButtonW = false;
-            employer.showButtonL = false;
-            this.employerArray.push(employer);
-          });
+          if(response.User.situation === "S"){
+            response.User.situation = "On Suspension";
+          }
+          else if(response.User.situation === "W"){
+            response.User.situation = "Working from Home";
+          }
+          else if(response.User.situation === "L"){
+            response.User.situation = "On Leave";
+          }
+          else{
+            response.User.situation = "Working Normally";
+          }
+          this.employer = response.employer[0];
+          console.log(this.employer);
         }
         this.userData = response.User;
+        this.applied = this.userData.applied;
       }
       else {
         console.log('cant find user!');
+        this.router.navigate(['login']);
       }
     });
   }
 
-  suspend(user:User):void{
+  suspend(user: User): void {
     var index = this.employeeArray.indexOf(user);
     this.employeeArray[index].showButtonL = false;
     this.employeeArray[index].showButtonW= false;
@@ -67,11 +85,12 @@ export class ProfileComponent implements OnInit {
       this.showConfirmButton = true;
     }
     else{
+      this.changesArray = this.changesArray.filter(element => element[0] != user._id);
       this.employeeArray[index].showButtonS = false;
     }
-    this.changesArray.push([user.id, null, "S"]);
   }
-  workFromHome(user:User):void{
+
+  workFromHome(user: User):void {
     var index = this.employeeArray.indexOf(user);
     this.employeeArray[index].showButtonL = false;
     this.employeeArray[index].showButtonS = false;
@@ -80,12 +99,12 @@ export class ProfileComponent implements OnInit {
       this.showConfirmButton = true;
     }
     else{
+      this.changesArray = this.changesArray.filter(element => element[0] != user._id);
       this.employeeArray[index].showButtonW = false;
     }
-    this.changesArray.push([user.id, null, "S"]);
-
   }
-  leave(user:User):void{
+
+  leave(user: User):void {
     var index = this.employeeArray.indexOf(user);
     this.employeeArray[index].showButtonW = false;
     this.employeeArray[index].showButtonS = false;
@@ -94,10 +113,61 @@ export class ProfileComponent implements OnInit {
       this.showConfirmButton = true;
     }
     else{
+      this.changesArray = this.changesArray.filter(element => element[0] != user._id);
       this.employeeArray[index].showButtonL = false;
     }
   }
+
+  returnToNormal(user: User):void {
+    var index = this.employeeArray.indexOf(user);
+    this.employeeArray[index].showButtonW = false;
+    this.employeeArray[index].showButtonS = false;
+    this.employeeArray[index].showButtonL = false;
+    this.showConfirmButton = true;
+    this.changesArray = this.changesArray.filter(element => element[0] != user._id);
+    this.changesArray.push([user._id, null, "N"]);
+  }
+
+  changeDate(user: User): void {
+    this.changesArray = this.changesArray.filter(element => element[0] != user._id);
+    if(user.showButtonL === true){
+      this.changesArray.push([user._id, user.situationDate, "L"]);
+    }
+    else if(user.showButtonS === true){
+      this.changesArray.push([user._id, user.situationDate, "S"]);
+    }
+    else if(user.showButtonW === true){
+      this.changesArray.push([user._id, user.situationDate, "W"]);
+    }
+    else{
+      console.log("Something is wrong");
+    }
+  }
+  
   confirm(): void{
-    console.log(this.changesArray);
+    this.userService.changeSituation(this.changesArray).then(response => {
+      if (response.done) {
+        location.reload();
+      }
+      else
+        console.log(response);
+    })
+  }
+
+  cancel(): void{
+    location.reload();
+  }
+
+  applyForLeave(): void{
+    console.log(this.id);
+    this.userService.apply(this.id).then(response => {
+      if (response.done) {
+        alert("Success!");
+        location.reload();
+      }
+      else
+      alert("Fail!");
+        console.log(response);
+    })
   }
 }

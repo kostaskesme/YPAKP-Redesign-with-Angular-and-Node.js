@@ -34,8 +34,45 @@ exports.getUsersById = function (req, res) {
       res.status(400).send({ found: false, message: `User with id:${req.params.id} not found!` });
       console.log(err);
     }
-    else
-      res.status(200).json({ found: true, User: user });
+    else{
+      if(user.type === "E"){
+        User.find({'employer': req.params.id}, (err, employees) => {
+          if(err){
+            res.status(200).json({ found: true, User: user, array: [] });
+          }
+          else{
+            res.status(200).json({ found: true, User: user, array: employees });
+          }
+        })
+      }
+      else{
+        User.find({_id: user.employer}, (err, employer) => {
+          if(err){
+            res.status(200).json({ found: true, User: user});
+          }
+          else{
+            res.status(200).json({ found: true, User: user, employer: employer });
+          }
+        })
+      }
+    }
   });
 }
 
+exports.changeSituations = function(req, res){
+  req.body.forEach(element => {
+    employee = User.findOneAndUpdate({_id: element[0]}, {situation: element[2], situationDate: element[1]}).then({});
+  });
+  res.status(200).json({ done: true});
+}
+
+exports.apply = function(req, res){
+  User.findOneAndUpdate({_id: req.body.id}, {applied: true}, (err) =>{
+    if(err){
+      res.status(200).json({ done: false });
+    }
+    else{
+      res.status(200).json({ done: true });
+    }
+  })
+}
