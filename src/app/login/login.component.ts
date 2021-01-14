@@ -15,12 +15,6 @@ export class LoginComponent implements OnInit {
 
   cookieValue = 'UNKNOWN';
 
-  cookieValueJSON = {
-    id: 0,
-    firstName: 'unavailable',
-    lastName: 'unavailable'
-  };
-
   logData = new FormGroup({
     afm: new FormControl('', [
       Validators.required
@@ -35,16 +29,6 @@ export class LoginComponent implements OnInit {
   bool2: boolean;
   bool3: boolean;
   fControls: any;
-
-  updateUserCookie(user): void {
-    this.cookieValueJSON = {
-      id: user._id,
-      firstName: user.firstName,
-      lastName: user.lastName
-    };
-    this.cookieValue = JSON.stringify(this.cookieValueJSON);
-    this.cookieService.set('usersCookie', this.cookieValue);
-  }
 
   ngOnInit(): void{
     this.bool1 = this.logData.controls.afm.errors.required;
@@ -64,8 +48,10 @@ export class LoginComponent implements OnInit {
           this.cookieService.delete('usersCookie');
         }
         console.log(result.user);
-        this.updateUserCookie(result.user);
-        this.router.navigate([`profile/${this.cookieValueJSON.id}`]);
+        this.cookieService.set('usersCookie', result.user._id);
+        this.router.navigate([`profile/${result.user._id}`]).then(() =>{
+          window.location.reload();
+        });
         // if (this.cookieValueJSON.type === 0) {
         //   this.router.navigate(['admin']);
         // }

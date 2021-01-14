@@ -17,10 +17,4 @@ export class AuthenticationService {
             return Promise.resolve(response);
         });
     }
-    // public register(registerData: any) {
-    //     const url = `${environment.appUrl}/register`;
-    //     return this.httpClient.post<any>(url, registerData).toPromise().then(response => {
-    //         return Promise.resolve(response);
-    //     })
-    // }
 }

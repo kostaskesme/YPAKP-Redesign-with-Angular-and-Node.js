@@ -40,15 +40,11 @@ ul li {
 /*}*/
 
 
+
 .nav li {
   margin: 1vw;
   padding: 1vw;
   position: relative;
-}
-
-
-.navbar-nav li .active {
-  background-color: red;
 }
 
 .search-form {
