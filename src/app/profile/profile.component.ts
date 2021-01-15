@@ -36,35 +36,34 @@ export class ProfileComponent implements OnInit {
           this.employeeArray = response.array;
           this.employeeArray.forEach(element => {
             if(element.situation === "S"){
-              element.situation = "On Suspension";
+              element.situation = "Σε αναστολή";
             }
             else if(element.situation === "W"){
-              element.situation = "Working from Home";
+              element.situation = "Εξ'αποστάσεως εργασία";
             }
             else if(element.situation === "L"){
-              element.situation = "On Leave";
+              element.situation = "Σε άδεια";
             }
             else{
-              element.situation = "Working Normally";
+              element.situation = "Κανονική εργασία";
             }
           })
         }
         else{
           this.isEmployer = false;
           if(response.User.situation === "S"){
-            response.User.situation = "On Suspension";
+            response.User.situation = "Σε αναστολή";
           }
           else if(response.User.situation === "W"){
-            response.User.situation = "Working from Home";
+            response.User.situation = "Εξ'αποστάσεως εργασία";
           }
           else if(response.User.situation === "L"){
-            response.User.situation = "On Leave";
+            response.User.situation = "Σε άδεια";
           }
           else{
-            response.User.situation = "Working Normally";
+            response.User.situation = "Κανονική εργασία";
           }
           this.employer = response.employer[0];
-          console.log(this.employer);
         }
         this.userData = response.User;
         this.applied = this.userData.applied;
@@ -159,7 +158,6 @@ export class ProfileComponent implements OnInit {
   }
 
   applyForLeave(): void{
-    console.log(this.id);
     this.userService.apply(this.id).then(response => {
       if (response.done) {
         alert("Success!");

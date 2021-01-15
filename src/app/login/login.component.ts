@@ -42,30 +42,19 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.authenticationService.authenticate(this.logData.value).then(result => {
-      console.log(result);
       if (result.isLoggedIn) {
         if (this.cookieService.check('usersCookie')) {
-          this.cookieService.delete('usersCookie');
+          this.cookieService.delete('usersCookie', '/');
         }
-        console.log(result.user);
         this.cookieService.set('usersCookie', result.user._id);
         this.router.navigate([`profile/${result.user._id}`]).then(() =>{
           window.location.reload();
         });
-        // if (this.cookieValueJSON.type === 0) {
-        //   this.router.navigate(['admin']);
-        // }
-        // else {
-        //   if (this.cookieValueJSON.approved) {
-        //     this.router.navigate([`profile/${this.cookieValueJSON.id}`]);
-        //   }
-        //   else {
-        //     this.cookieService.delete('usersCookie');
-        //     this.router.navigate(['pending']);
-        //   }
-        // }
-      } else {
-        alert('Invalid credentials');
+      }
+      else if(result.message == 'Incorrect Password'){
+        alert('Λανθασμένος Κωδικός')
+      }else {
+        alert('Λανθασμένος ΑΦΜ');
       }
     });
   }

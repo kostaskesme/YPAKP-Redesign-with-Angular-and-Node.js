@@ -36,14 +36,12 @@ export class AppComponent implements OnInit {
         this.pageId = "home"
       }
     }
-    console.log(this.pageId);
-
     document.getElementById(this.pageId).classList.add("active");
   }
 
   logout(): void{
     this.router.navigate(['']).then( () =>{
-      this.cookieService.delete('usersCookie');
+      this.cookieService.delete('usersCookie', '/');
       window.location.reload();
     })
   }
