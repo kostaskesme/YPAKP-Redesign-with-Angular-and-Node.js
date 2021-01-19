@@ -7,6 +7,8 @@ import { ProfileComponent } from './profile/profile.component';
 import { ContactComponent } from './contact/contact.component';
 import { CovidComponent } from './covid/covid.component';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { WorkInfoComponent } from './work-info/work-info.component';
+
 
 const routes: Routes = [
   {
@@ -26,6 +28,9 @@ const routes: Routes = [
   },
   {
     path: 'covid', component: CovidComponent
+  },
+  {
+    path: 'workinfo', component: WorkInfoComponent
   }
 ];
 

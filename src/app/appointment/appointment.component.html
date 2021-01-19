@@ -13,7 +13,7 @@
     αναγράφεται η ακριβής ώρα του ραντεβού σας.
   </p>
 
-
+  <div class="empty-space"></div>
 
   <form action="action_page">
 
@@ -29,19 +29,20 @@
     <label for="subject">Ο λόγος για τον οποίο θέλετε να κλείσετε ραντεβού:</label>
     <textarea class="text-area" id="subject" name="subject" placeholder="πχ. Θα ήθελα να παραλάβω την βεβαίωση εργασίας μου..."></textarea>
 
-    <mat-form-field class="label-field" appearance="fill">
-      <mat-label class="date-label">Choose a date</mat-label>
+    <mat-form-field class="label-field">
+      <div class="date_empty_container"></div>
+      <mat-label class="date-label">Επιλογή Ημερομηνίας</mat-label>
       <input matInput [matDatepicker]="picker">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+      <mat-datepicker #picker startView="month" [startAt]="startDate"></mat-datepicker>
       <mat-date-range-picker #picker></mat-date-range-picker>
     </mat-form-field>
-
-
 
     <div class="submit-button">
       <input type="submit" value="Submit">
     </div>
   </form>
+
+
 
 </body>

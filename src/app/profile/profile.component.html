@@ -5,55 +5,55 @@
 <body>
 
     <mat-tab-group>
-        <mat-tab label="Work Information"> 
+        <mat-tab label="Πληροφορίες Εργοδότη">
             <div *ngIf = "!isEmployer" >
-                <mat-card class = "company"><mat-card-title>Company</mat-card-title>
+                <mat-card class="company_info"><mat-card-title>Εταιρία</mat-card-title>
                     <mat-card-content>{{employer?.company}}</mat-card-content>
                 </mat-card>
-                <mat-card class = "afm"><mat-card-title>AFM</mat-card-title>
+                <mat-card class="company_info"><mat-card-title>ΑΦΜ</mat-card-title>
                     <mat-card-content>{{employer?.afm}}</mat-card-content>
                 </mat-card>
-                <mat-card class = "situation"><mat-card-title>Work Situation</mat-card-title>
+                <mat-card class="company_info"><mat-card-title>Τρέχουσα Κατάσταση Εργασίας</mat-card-title>
                     <mat-card-content>
                         {{userData?.situation}}
-                        <mat-card class = "situationDate"><mat-card-title>Until</mat-card-title>
+                        <mat-card class="company_info"><mat-card-title>Μέχρι:</mat-card-title>
                             <mat-card-content>{{(userData?.situationDate | date:'medium' || 'None')}}</mat-card-content>
                         </mat-card>
                     </mat-card-content>
                 </mat-card>
-              
+
                 <div *ngIf = "!applied && userData?.parentU12">
                     <button  class="btn btn-primary" (click)="applyForLeave()">Apply for Special Leave</button>
                 </div>
 
             </div>
             <div *ngIf = "isEmployer">
-                <mat-card class = "company"><mat-card-title>Company</mat-card-title>
+                <mat-card class="company_info"><mat-card-title>Εταιρία</mat-card-title>
                     <mat-card-content>{{userData?.company}}</mat-card-content>
                 </mat-card>
-                <table mat-table [dataSource]="employeeArray" class="mat-elevation-z8 full-width">
+                <table mat-table [dataSource]="employeeArray">
                 <ng-container matColumnDef="firstName">
-                  <th mat-header-cell *matHeaderCellDef>First Name</th>
+                  <th mat-header-cell *matHeaderCellDef>Όνομα</th>
                   <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="lastName">
-                  <th mat-header-cell *matHeaderCellDef>Last Name</th>
+                  <th mat-header-cell *matHeaderCellDef>Επίθετο</th>
                   <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="AFM">
-                  <th mat-header-cell *matHeaderCellDef>AFM</th>
+                  <th mat-header-cell *matHeaderCellDef>ΑΦΜ</th>
                   <td mat-cell *matCellDef="let user"> {{user.afm}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="situation">
-                    <th mat-header-cell *matHeaderCellDef>Work Situation</th>
+                    <th mat-header-cell *matHeaderCellDef>Κατάσταση Εργασίας</th>
                     <td mat-cell *matCellDef="let user"> {{user.situation}} </td>
                   </ng-container>
 
                   <ng-container matColumnDef="situationDate">
-                    <th mat-header-cell *matHeaderCellDef>Until</th>
+                    <th mat-header-cell *matHeaderCellDef>Μέχρι:</th>
                     <td mat-cell *matCellDef="let user"> {{(user.situationDate | date:'medium' || 'None')}} </td>
                   </ng-container>
 
@@ -107,7 +107,7 @@
                         <button class="btn btn-primary" (click)="returnToNormal(user)">Return to Normal</button>
                     </td>
                 </ng-container>
-    
+
                 <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                 <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
@@ -123,14 +123,14 @@
             </div>
 
         </mat-tab>
-        <mat-tab label="Personal Information"> 
-            <mat-card class = "firstName" ><mat-card-title>First Name</mat-card-title>
+        <mat-tab label="Πληροφορίες χρήστη">
+            <mat-card class="user_attribute" ><mat-card-title>Όνομα</mat-card-title>
                 <mat-card-content>{{userData?.firstName}}</mat-card-content>
             </mat-card>
-            <mat-card class = "lastName"><mat-card-title>Last Name</mat-card-title>
+            <mat-card class="user_attribute"><mat-card-title>Επίθετο</mat-card-title>
                 <mat-card-content>{{userData?.lastName}}</mat-card-content>
             </mat-card>
-            <mat-card class = "afm"><mat-card-title>AFM</mat-card-title>
+            <mat-card class="user_attribute"><mat-card-title>ΑΦΜ</mat-card-title>
                 <mat-card-content>{{userData?.afm}}</mat-card-content>
             </mat-card>
         </mat-tab>
