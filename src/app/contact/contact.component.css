@@ -1,4 +1,10 @@
 
+body {
+  align-items: center;
+  justify-content: center;
+  margin-top: 5vw;
+}
+
 .appointment {
   position: absolute;
   left: 0;
@@ -31,12 +37,6 @@
 
 .appointment-button-text {
   color: white;
-}
-
-body {
-  align-items: center;
-  justify-content: center;
-  margin-top: 5vw;
 }
 
 .form_header {

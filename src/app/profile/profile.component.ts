@@ -36,32 +36,32 @@ export class ProfileComponent implements OnInit {
           this.employeeArray = response.array;
           this.employeeArray.forEach(element => {
             if(element.situation === "S"){
-              element.situation = "On Suspension";
+              element.situation = "Σε παύση";
             }
             else if(element.situation === "W"){
-              element.situation = "Working from Home";
+              element.situation = "Κατ' οίκον";
             }
             else if(element.situation === "L"){
-              element.situation = "On Leave";
+              element.situation = "Σε Άδεια";
             }
             else{
-              element.situation = "Working Normally";
+              element.situation = "Δια Ζώσης";
             }
           })
         }
         else{
           this.isEmployer = false;
           if(response.User.situation === "S"){
-            response.User.situation = "On Suspension";
+            response.User.situation = "Σε παύση";
           }
           else if(response.User.situation === "W"){
-            response.User.situation = "Working from Home";
+            response.User.situation = "Κατ' οίκον";
           }
           else if(response.User.situation === "L"){
-            response.User.situation = "On Leave";
+            response.User.situation = "Σε Άδεια";
           }
           else{
-            response.User.situation = "Working Normally";
+            response.User.situation = "Δια Ζώσης";
           }
           this.employer = response.employer[0];
           console.log(this.employer);
@@ -143,7 +143,7 @@ export class ProfileComponent implements OnInit {
       console.log("Something is wrong");
     }
   }
-  
+
   confirm(): void{
     this.userService.changeSituation(this.changesArray).then(response => {
       if (response.done) {
@@ -162,11 +162,11 @@ export class ProfileComponent implements OnInit {
     console.log(this.id);
     this.userService.apply(this.id).then(response => {
       if (response.done) {
-        alert("Success!");
+        alert("Επιτυχία!");
         location.reload();
       }
       else
-      alert("Fail!");
+      alert("Αποτυχία!");
         console.log(response);
     })
   }

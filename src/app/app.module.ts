@@ -22,6 +22,7 @@ import { CovidComponent } from './covid/covid.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import { AppointmentComponent } from './appointment/appointment.component';
+import { WorkInfoComponent } from './work-info/work-info.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { AppointmentComponent } from './appointment/appointment.component';
     ProfileComponent,
     ContactComponent,
     CovidComponent,
-    AppointmentComponent
+    AppointmentComponent,
+    WorkInfoComponent
   ],
   imports: [
     BrowserModule,
