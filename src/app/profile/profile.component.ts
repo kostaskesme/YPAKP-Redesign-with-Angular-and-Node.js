@@ -12,7 +12,8 @@ import { User } from 'src/models/user.type';
 })
 export class ProfileComponent implements OnInit {
   userData: User;
-  id: string = window.location.href.slice((window.location.href.lastIndexOf("/")) + 1);
+  // id: string = window.location.href.slice((window.location.href.lastIndexOf("/")) + 1);
+  id: string;
   isEmployer: boolean;
   minDate: Date = new Date();
   employeeArray: User[];
@@ -20,60 +21,65 @@ export class ProfileComponent implements OnInit {
   changesArray: [string, Date, string][];
   showConfirmButton: boolean = false;
   applied: boolean = false;
+  showButton: boolean = false;
   displayedColumns: string[] = ['firstName', 'lastName', 'AFM', "situation", "situationDate", "action1", 'action2', 'action3', 'action4'];
   constructor(private userService: UserService, private router: Router, private route: ActivatedRoute, private cookieService: CookieService) { }
 
   ngOnInit(): void {
+  
     this,this.changesArray = [];
     if (!(this.cookieService.check('usersCookie'))) {
-      alert('Not Authorized!');
-      this.router.navigate(['']);
+      alert('Πρέπει να συνδεθείτε γιά να έχετε πρόσβαση σε αυτή τη σελίδα');
+      this.router.navigate(['login']);
     }
-    this.userService.profile(this.id).then(response => {
-      if (response.found) {
-        if(response.User.type === "E"){
-          this.isEmployer = true;
-          this.employeeArray = response.array;
-          this.employeeArray.forEach(element => {
-            if(element.situation === "S"){
-
-              element.situation = "Σε παύση";
-            }
-            else if(element.situation === "W"){
-              element.situation = "Κατ' οίκον";
-            }
-            else if(element.situation === "L"){
-              element.situation = "Σε Άδεια";
-            }
-            else{
-              element.situation = "Δια Ζώσης";
-            }
-          })
-        }
-        else{
-          this.isEmployer = false;
-          if(response.User.situation === "S"){
-            response.User.situation = "Σε παύση";
-          }
-          else if(response.User.situation === "W"){
-            response.User.situation = "Κατ' οίκον";
-          }
-          else if(response.User.situation === "L"){
-            response.User.situation = "Σε Άδεια";
+    else{
+      this.id = this.cookieService.get('usersCookie');
+      this.userService.profile(this.id).then(response => {
+        if (response.found) {
+          if(response.User.type === "E"){
+            this.isEmployer = true;
+            this.employeeArray = response.array;
+            this.employeeArray.forEach(element => {
+              if(element.situation === "S"){
+  
+                element.situation = "Σε παύση";
+              }
+              else if(element.situation === "W"){
+                element.situation = "Κατ' οίκον";
+              }
+              else if(element.situation === "L"){
+                element.situation = "Σε Άδεια";
+              }
+              else{
+                element.situation = "Δια Ζώσης";
+              }
+            })
           }
           else{
-            response.User.situation = "Δια Ζώσης";
+            this.isEmployer = false;
+            if(response.User.situation === "S"){
+              response.User.situation = "Σε παύση";
+            }
+            else if(response.User.situation === "W"){
+              response.User.situation = "Κατ' οίκον";
+            }
+            else if(response.User.situation === "L"){
+              response.User.situation = "Σε Άδεια";
+            }
+            else{
+              response.User.situation = "Δια Ζώσης";
+            }
+            this.employer = response.employer[0];
           }
-          this.employer = response.employer[0];
+          this.userData = response.User;
+          this.applied = this.userData.applied;
         }
-        this.userData = response.User;
-        this.applied = this.userData.applied;
-      }
-      else {
-        console.log('cant find user!');
-        this.router.navigate(['login']);
-      }
-    });
+        else {
+          console.log('cant find user!');
+          this.router.navigate(['login']);
+        }
+      });
+    }
   }
 
   suspend(user: User): void {
@@ -158,6 +164,15 @@ export class ProfileComponent implements OnInit {
     location.reload();
   }
 
+  show(): void{
+    if(this.showButton === true){
+      this.showButton = false;
+    }
+    else{
+      this.showButton = true;
+    }
+  }
+
   applyForLeave(): void{
     this.userService.apply(this.id).then(response => {
       if (response.done) {
@@ -169,4 +184,18 @@ export class ProfileComponent implements OnInit {
         console.log(response);
     })
   }
+
+  unapply(): void{
+    this.userService.unapply(this.id).then(response => {
+      if (response.done) {
+        alert("Επιτυχία!");
+        location.reload();
+      }
+      else
+      alert("Αποτυχία!");
+        console.log(response);
+    })
+  }
 }
+
+

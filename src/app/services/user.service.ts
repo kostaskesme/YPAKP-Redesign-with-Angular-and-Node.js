@@ -24,6 +24,14 @@ export class UserService {
       })
     }
 
+    public unapply(id: string) {
+      const url = `${environment.appUrl}/unapply`;
+      const httpPostOptions = { headers: new HttpHeaders(), withCredentials: true };
+      return this.httpClient.post<any>(url, {id:id}, httpPostOptions).toPromise().then(response => {
+        return Promise.resolve(response);
+      })
+    }
+
     public profile(id: string) {
       const url = `${environment.appUrl}/users/${id}`;
       return this.httpClient.get<any>(url).toPromise().then(response => {

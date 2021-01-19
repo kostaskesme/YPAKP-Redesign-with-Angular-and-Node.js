@@ -23,7 +23,13 @@
                 </mat-card>
 
                 <div *ngIf = "!applied && userData?.parentU12">
-                    <button  class="btn btn-primary" (click)="applyForLeave()">Αίτηση για Άδεια Ειδικού Σκοπού</button>
+                    <button  class="btn btn-primary" (click)="show()">Αίτηση για Άδεια Ειδικού Σκοπού</button>
+                </div>
+
+                <div *ngIf = "showButton">
+                    Επιθυμώ να κάνω δήλωση για άδεια ειδικού σκοπού
+                    <button  class="btn btn-primary" (click)="applyForLeave()">Ναι</button>
+                    <button  class="btn btn-danger" (click)="show()">Όχι</button>
                 </div>
 
             </div>

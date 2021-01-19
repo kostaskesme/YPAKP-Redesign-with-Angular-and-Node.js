@@ -23,4 +23,8 @@ router.post('/apply', function (req, res) {
   userController.apply(req, res);
 });
 
+router.post('/unapply', function (req, res) {
+  userController.apply(req, res);
+});
+
 module.exports = router;

@@ -11,7 +11,6 @@ exports.getAllUsers = function (req, res) {
     });
   }
 
-
 exports.login = function (req, res) {
   User.findOne({afm :req.body.afm}, (err, user) => {
     if (!user) {
@@ -68,6 +67,17 @@ exports.changeSituations = function(req, res){
 
 exports.apply = function(req, res){
   User.findOneAndUpdate({_id: req.body.id}, {applied: true}, (err) =>{
+    if(err){
+      res.status(200).json({ done: false });
+    }
+    else{
+      res.status(200).json({ done: true });
+    }
+  })
+}
+
+exports.unapply = function(req, res){
+  User.findOneAndUpdate({_id: req.body.id}, {applied: false}, (err) =>{
     if(err){
       res.status(200).json({ done: false });
     }
