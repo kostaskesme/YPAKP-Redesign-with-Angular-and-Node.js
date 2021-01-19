@@ -10,7 +10,7 @@ var cors=require('cors');
 
 const http = require('http');
 const port = 3000;
-mongoose.connect('mongodb://localhost:27017/EAM3', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
+mongoose.connect('mongodb://localhost:27017/sdi1600176', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
 var db = mongoose.connection;
 
 app.use(function (req, res, next) {

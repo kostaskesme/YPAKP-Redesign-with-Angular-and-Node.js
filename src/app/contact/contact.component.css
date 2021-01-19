@@ -7,7 +7,7 @@ body {
 
 .appointment {
   position: absolute;
-  left: 0;
+  left: 30px;
   top: 200px;
   margin-left: 10px;
   border: 2px solid;
@@ -16,7 +16,10 @@ body {
   padding: 7px;
   text-align: center;
   background-color: white;
-  width: 180px;
+  width: 12vw;
+  height: 7vw;
+  min-width: 200px;
+  min-height: 140px;
 }
 
 .appointment-text {
