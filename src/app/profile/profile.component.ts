@@ -36,6 +36,7 @@ export class ProfileComponent implements OnInit {
           this.employeeArray = response.array;
           this.employeeArray.forEach(element => {
             if(element.situation === "S"){
+
               element.situation = "Σε παύση";
             }
             else if(element.situation === "W"){
@@ -64,7 +65,6 @@ export class ProfileComponent implements OnInit {
             response.User.situation = "Δια Ζώσης";
           }
           this.employer = response.employer[0];
-          console.log(this.employer);
         }
         this.userData = response.User;
         this.applied = this.userData.applied;
@@ -159,7 +159,6 @@ export class ProfileComponent implements OnInit {
   }
 
   applyForLeave(): void{
-    console.log(this.id);
     this.userService.apply(this.id).then(response => {
       if (response.done) {
         alert("Επιτυχία!");
