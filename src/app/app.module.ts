@@ -12,13 +12,17 @@ import { ProfileComponent } from './profile/profile.component';
 import { UserService } from './services/user.service';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatTableModule } from '@angular/material/table'  
+import {MatCardModule} from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatListModule } from '@angular/material/list';
-import { MatCardModule } from '@angular/material/card';
 import { ContactComponent } from './contact/contact.component';
 import { CovidComponent } from './covid/covid.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import { AppointmentComponent } from './appointment/appointment.component';
+import { WorkInfoComponent } from './work-info/work-info.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +31,9 @@ import { CovidComponent } from './covid/covid.component';
     HomeComponent,
     ProfileComponent,
     ContactComponent,
-    CovidComponent
+    CovidComponent,
+    AppointmentComponent,
+    WorkInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +48,8 @@ import { CovidComponent } from './covid/covid.component';
     MatDatepickerModule,
     MatNativeDateModule,
     MatListModule,
+    MatFormFieldModule,
+    MatInputModule,
   ],
   providers: [UserService, AuthenticationService, CookieService],
   bootstrap: [AppComponent]

@@ -36,32 +36,33 @@ export class ProfileComponent implements OnInit {
           this.employeeArray = response.array;
           this.employeeArray.forEach(element => {
             if(element.situation === "S"){
-              element.situation = "Σε αναστολή";
+
+              element.situation = "Σε παύση";
             }
             else if(element.situation === "W"){
-              element.situation = "Εξ'αποστάσεως εργασία";
+              element.situation = "Κατ' οίκον";
             }
             else if(element.situation === "L"){
-              element.situation = "Σε άδεια";
+              element.situation = "Σε Άδεια";
             }
             else{
-              element.situation = "Κανονική εργασία";
+              element.situation = "Δια Ζώσης";
             }
           })
         }
         else{
           this.isEmployer = false;
           if(response.User.situation === "S"){
-            response.User.situation = "Σε αναστολή";
+            response.User.situation = "Σε παύση";
           }
           else if(response.User.situation === "W"){
-            response.User.situation = "Εξ'αποστάσεως εργασία";
+            response.User.situation = "Κατ' οίκον";
           }
           else if(response.User.situation === "L"){
-            response.User.situation = "Σε άδεια";
+            response.User.situation = "Σε Άδεια";
           }
           else{
-            response.User.situation = "Κανονική εργασία";
+            response.User.situation = "Δια Ζώσης";
           }
           this.employer = response.employer[0];
         }
@@ -142,7 +143,7 @@ export class ProfileComponent implements OnInit {
       console.log("Something is wrong");
     }
   }
-  
+
   confirm(): void{
     this.userService.changeSituation(this.changesArray).then(response => {
       if (response.done) {
@@ -160,11 +161,11 @@ export class ProfileComponent implements OnInit {
   applyForLeave(): void{
     this.userService.apply(this.id).then(response => {
       if (response.done) {
-        alert("Success!");
+        alert("Επιτυχία!");
         location.reload();
       }
       else
-      alert("Fail!");
+      alert("Αποτυχία!");
         console.log(response);
     })
   }
