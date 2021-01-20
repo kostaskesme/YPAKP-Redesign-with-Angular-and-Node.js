@@ -42,10 +42,10 @@ export class ProfileComponent implements OnInit {
             this.employeeArray.forEach(element => {
               if(element.situation === "S"){
   
-                element.situation = "Σε παύση";
+                element.situation = "Σε αναστολή";
               }
               else if(element.situation === "W"){
-                element.situation = "Κατ' οίκον";
+                element.situation = "Εξ' Αποστάσεως";
               }
               else if(element.situation === "L"){
                 element.situation = "Σε Άδεια";
@@ -58,10 +58,10 @@ export class ProfileComponent implements OnInit {
           else{
             this.isEmployer = false;
             if(response.User.situation === "S"){
-              response.User.situation = "Σε παύση";
+              response.User.situation = "Σε αναστολή";
             }
             else if(response.User.situation === "W"){
-              response.User.situation = "Κατ' οίκον";
+              response.User.situation = "Εξ' Αποστάσεως";
             }
             else if(response.User.situation === "L"){
               response.User.situation = "Σε Άδεια";

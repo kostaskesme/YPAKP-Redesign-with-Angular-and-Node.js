@@ -13,7 +13,7 @@ body {
 }
 
 .h3_header {
-  color: white;
+  color: black;
   margin-bottom: 50px;
 }
 
@@ -46,12 +46,14 @@ body {
 }
 
 .login-btn:hover {
-  background-color: steelblue;
+  background-color: darkgray;
   border-radius: 3rem;
+  color: black
 }
 
 .login-btn {
-  background-color: dodgerblue;
+  background-color: #3A3A3B;
+  /* background-color: #313134; */
   color: white;
   text-align: center;
   padding: 10px;
@@ -59,7 +61,10 @@ body {
   border: none;
   border-radius: 3rem;
   cursor: pointer;
-  width: 150px;
+  height: 60px;
+  width: 250px;
+  font-size: 20px;
+
 }
 
 .registration {

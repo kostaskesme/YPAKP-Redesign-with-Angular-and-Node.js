@@ -32,14 +32,17 @@ body {
   height: 30px;
   margin-right: auto;
   margin-left: auto;
-  background-color:dodgerblue;
+  background-color:orange;
   border-radius: 100px;
   padding: 5px;
   min-width: 100px;
+  border: 2px solid;
 }
 
 .appointment-button-text {
-  color: white;
+  color: black;
+  font-weight: 600;
+
 }
 
 .form_header {
@@ -78,7 +81,7 @@ input, select, textarea {
 input[type=submit] {
   background-color: dodgerblue;
   width: 150px;
-  color: white;
+  color: black;
   padding: 12px 20px;
   border: none;
   border-radius: 4px;
