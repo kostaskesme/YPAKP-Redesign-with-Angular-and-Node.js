@@ -7,16 +7,19 @@
     <mat-tab-group>
         <mat-tab label="Εργασία">
             <div *ngIf = "!isEmployer" >
-                <mat-card class="company_info"><mat-card-title>Εταιρία</mat-card-title>
+                <mat-card class="employee_company_info">
+                  <mat-card-title>Εταιρία</mat-card-title>
                     <mat-card-content>{{employer?.company}}</mat-card-content>
                 </mat-card>
-                <mat-card class="company_info"><mat-card-title>ΑΦΜ</mat-card-title>
+                <mat-card class="employee_company_info">
+                  <mat-card-title>ΑΦΜ</mat-card-title>
                     <mat-card-content>{{employer?.afm}}</mat-card-content>
                 </mat-card>
-                <mat-card class="company_info"><mat-card-title>Τρέχουσα Κατάσταση Εργασίας</mat-card-title>
+                <mat-card class="employee_company_info"><mat-card-title>Τρέχουσα Κατάσταση Εργασίας</mat-card-title>
                     <mat-card-content>
                         {{userData?.situation}}
-                        <mat-card class="company_info"><mat-card-title>Μέχρι:</mat-card-title>
+                        <mat-card class="employee_company_info_date">
+                          <mat-card-title>Μέχρι:</mat-card-title>
                             <mat-card-content>{{(userData?.situationDate | date:'medium' || 'None')}}</mat-card-content>
                         </mat-card>
                     </mat-card-content>
@@ -34,39 +37,40 @@
 
             </div>
             <div *ngIf = "isEmployer">
-                <mat-card class="company_info"><mat-card-title>Εταιρία</mat-card-title>
-                    <mat-card-content>{{userData?.company}}</mat-card-content>
+                <mat-card class="company_info"><mat-card-title>Η Εταιρία σας:</mat-card-title>
+                    <mat-card-content class="company-text">{{userData?.company}}</mat-card-content>
                 </mat-card>
-                <table mat-table [dataSource]="employeeArray">
+                <h3 class="h3employees">Λίστα Εργαζομένων:</h3>
+                <table class="employees" mat-table [dataSource]="employeeArray">
                 <ng-container matColumnDef="firstName">
-                  <th mat-header-cell *matHeaderCellDef>Όνομα</th>
-                  <td mat-cell *matCellDef="let user"> {{user.firstName}} </td>
+                  <th class="title" mat-header-cell *matHeaderCellDef>Όνομα</th>
+                  <td class="info" mat-cell *matCellDef="let user"> {{user.firstName}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="lastName">
-                  <th mat-header-cell *matHeaderCellDef>Επίθετο</th>
-                  <td mat-cell *matCellDef="let user"> {{user.lastName}} </td>
+                  <th class="title" mat-header-cell *matHeaderCellDef>Επίθετο</th>
+                  <td class="info" mat-cell *matCellDef="let user"> {{user.lastName}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="AFM">
-                  <th mat-header-cell *matHeaderCellDef>ΑΦΜ</th>
-                  <td mat-cell *matCellDef="let user"> {{user.afm}} </td>
+                  <th class="title" mat-header-cell *matHeaderCellDef>ΑΦΜ</th>
+                  <td class="info" mat-cell *matCellDef="let user"> {{user.afm}} </td>
                 </ng-container>
 
                 <ng-container matColumnDef="situation">
-                    <th mat-header-cell *matHeaderCellDef>Κατάσταση Εργασίας</th>
-                    <td mat-cell *matCellDef="let user"> {{user.situation}} </td>
+                    <th class="title" mat-header-cell *matHeaderCellDef>Κατάσταση Εργασίας</th>
+                    <td class="info" mat-cell *matCellDef="let user"> {{user.situation}} </td>
                   </ng-container>
 
                   <ng-container matColumnDef="situationDate">
-                    <th mat-header-cell *matHeaderCellDef>Μέχρι:</th>
-                    <td mat-cell *matCellDef="let user"> {{(user.situationDate | date:'medium' || 'None')}} </td>
+                    <th class="title" mat-header-cell *matHeaderCellDef>Μέχρι:</th>
+                    <td class="info" mat-cell *matCellDef="let user"> {{(user.situationDate | date:'medium' || 'None')}} </td>
                   </ng-container>
 
 
                 <ng-container matColumnDef="action1">
-                    <th mat-header-cell *matHeaderCellDef>Αναστολή Εργασίας</th>
-                    <td mat-cell *matCellDef="let user">
+                    <th class="title" mat-header-cell *matHeaderCellDef>Αναστολή Εργασίας</th>
+                    <td class="button" mat-cell *matCellDef="let user">
                         <button class="btn btn-primary" (click)="suspend(user)">Δήλωση</button>
                         <div *ngIf = "user.showButtonS">
                             <mat-form-field appearance="fill">
@@ -81,8 +85,8 @@
                 </ng-container>
 
                 <ng-container matColumnDef="action2">
-                    <th mat-header-cell *matHeaderCellDef>Εξ' Αποστάσεως Εργασία</th>
-                    <td mat-cell *matCellDef="let user">
+                    <th class="title" mat-header-cell *matHeaderCellDef>Εξ' Αποστάσεως Εργασία</th>
+                    <td class="button" mat-cell *matCellDef="let user">
                         <button class="btn btn-primary" (click)="workFromHome(user)">Δήλωση</button>
                         <div *ngIf = "user.showButtonW">
                             <mat-form-field appearance="fill">
@@ -95,8 +99,8 @@
                 </ng-container>
 
                 <ng-container matColumnDef="action3">
-                    <th mat-header-cell *matHeaderCellDef>Άδεια Ειδικού Σκοπού</th>
-                    <td mat-cell *matCellDef="let user">
+                    <th class="title" mat-header-cell *matHeaderCellDef>Άδεια Ειδικού Σκοπού</th>
+                    <td class="button" mat-cell *matCellDef="let user">
                         <button class="btn btn-primary" (click)="leave(user)">Δήλωση</button>
                         <div *ngIf = "user.showButtonL">
                             <mat-form-field appearance="fill">
@@ -109,9 +113,9 @@
                 </ng-container>
 
                 <ng-container matColumnDef="action4">
-                    <th mat-header-cell *matHeaderCellDef></th>
-                    <td mat-cell *matCellDef="let user">
-                        <button class="btn btn-primary" (click)="returnToNormal(user)">Επαναφορά Κατάστασης</button>
+                    <th class="title" mat-header-cell *matHeaderCellDef></th>
+                    <td class="button" mat-cell *matCellDef="let user">
+                        <button class="btn btn-primary" (click)="returnToNormal(user)">Επαναφορά "Κανονικής" Κατάστασης</button>
                     </td>
                 </ng-container>
 
